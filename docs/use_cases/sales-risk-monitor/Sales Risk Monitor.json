@@ -1,0 +1,451 @@
+{
+  "name": "Sales Risk Monitor v1",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "12a8f17b-154c-4664-b617-63d12363b0a0",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1QdeoFIAKu8K5CI6bPdKKaG8e0AC2FdbVRS9WXNkaE6o",
+          "mode": "list",
+          "cachedResultName": "pipeline_current",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QdeoFIAKu8K5CI6bPdKKaG8e0AC2FdbVRS9WXNkaE6o/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Tabellenblatt1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QdeoFIAKu8K5CI6bPdKKaG8e0AC2FdbVRS9WXNkaE6o/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        208,
+        0
+      ],
+      "id": "a2b903b8-3fd3-4613-81ad-0df7a407fb16",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "K5IBb38DkpY4qZZn",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Analyze the following sales deal and assess the risk that the deal will be lost or delayed.\n\nDeal Data:\nAccount: {{$json.account_name}}\nStage: {{$json.stage}}\nDeal Value: {{$json.deal_value}}\nProbability: {{$json.probability}}\nExpected Close Date: {{$json.expected_close_date}}\nLast Updated: {{$json.last_updated_date}}\nService Signal: {{$json.service_signal}}\n\nRisk scoring guideline:\n1–3 = Low risk\n4–6 = Medium risk\n7–10 = High risk\n\nReturn ONLY valid JSON.\nDo not include any text before or after the JSON.\n\n{\n \"risk_score\": number,\n \"risk_level\": \"Low | Medium | High\",\n \"explanation\": \"short explanation (max 2 sentences)\"\n}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=You are a sales pipeline risk analyst.  Analyze the following sales deal and determine the risk level.  Deal Data: Account: {{$json.account_name}} Stage: {{$json.stage}} Deal Value: {{$json.deal_value}} Probability: {{$json.probability}} Expected Close Date: {{$json.expected_close_date}} Last Updated: {{$json.last_updated_date}} Service Signal: {{$json.service_signal}}  Evaluate the risk of this deal.  Return:  Risk Score (1–10) Risk Level (Low, Medium, High) Short explanation (max 2 sentences)"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        464,
+        208
+      ],
+      "id": "ce7fdd92-ca64-462f-989b-bd4724b71439",
+      "name": "Basic LLM Chain1"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-5-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        464,
+        448
+      ],
+      "id": "b9d0e789-1a58-4ae4-9b71-e1277a80f189",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "4ZT0AlTmh29IT3yW",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "294ec029-0136-4fe8-968a-19daf52b5fc3",
+              "name": "risk_score",
+              "value": "={{ JSON.parse($json.text).risk_score }}",
+              "type": "number"
+            },
+            {
+              "id": "6f810856-ff33-4509-9c2a-f681d86f447c",
+              "name": "risk_level",
+              "value": "={{ JSON.parse($json.text).risk_level }}",
+              "type": "string"
+            },
+            {
+              "id": "4734de65-f361-42d7-8143-b1e453f10e9c",
+              "name": "explanation",
+              "value": "={{ JSON.parse($json.text).explanation }}",
+              "type": "string"
+            },
+            {
+              "id": "5497223d-b732-40d9-a3b1-73952f370fc8",
+              "name": "deal_id",
+              "value": "={{$json.deal_id}}",
+              "type": "string"
+            },
+            {
+              "id": "1f299c7a-7263-414b-8608-d681ae87f58f",
+              "name": "account_name",
+              "value": "={{$json.account_name}}",
+              "type": "string"
+            },
+            {
+              "id": "7f6c28f6-ae5f-4014-a665-e51b10a645a5",
+              "name": "deal_value",
+              "value": "={{$json.deal_value}}",
+              "type": "number"
+            },
+            {
+              "id": "99d6120b-c4cd-4146-9edf-aaff135f57d3",
+              "name": "stage",
+              "value": "={{$json.stage}}",
+              "type": "string"
+            },
+            {
+              "id": "67e6e8a6-2253-411d-8a71-0aa14380666c",
+              "name": "probability",
+              "value": "={{$json.probability}}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        864,
+        0
+      ],
+      "id": "14db48c3-5284-4d05-a31d-6605de3266f3",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "8d5a3b0d-309d-4957-a51d-f8fa1e85d854",
+              "leftValue": "={{$json.risk_level}}",
+              "rightValue": "High",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1056,
+        0
+      ],
+      "id": "5c8d593d-4b10-4205-82c3-760c17028e3a",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1Qe1yOo0EfDx02MymKZtS99oZULcBej7tfgnwK2mu8aY",
+          "mode": "list",
+          "cachedResultName": "high_risk_deals",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Qe1yOo0EfDx02MymKZtS99oZULcBej7tfgnwK2mu8aY/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "high_risk_deals",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Qe1yOo0EfDx02MymKZtS99oZULcBej7tfgnwK2mu8aY/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "risk_level": "={{$json.risk_level}}",
+            "deal_id": "={{$json.deal_id}}",
+            "account_name": "={{$json.account_name}}",
+            "deal_value": "={{$json.deal_value}}",
+            "stage": "={{$json.stage}}",
+            "probability": "={{$json.probability}}",
+            "risk_score": "={{$json.risk_score}}",
+            "explanation": "={{$json.explanation}}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "deal_id",
+              "displayName": "deal_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "account_name",
+              "displayName": "account_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "deal_value",
+              "displayName": "deal_value",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "stage",
+              "displayName": "stage",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "probability",
+              "displayName": "probability",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "risk_score",
+              "displayName": "risk_score",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "risk_level",
+              "displayName": "risk_level",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "explanation",
+              "displayName": "explanation",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "text",
+              "displayName": "text",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1248,
+        -112
+      ],
+      "id": "cd2916a7-39fd-4b69-943a-c9cd975379f9",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "K5IBb38DkpY4qZZn",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {
+          "includeUnpaired": false
+        }
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        688,
+        0
+      ],
+      "id": "c71fc857-9187-419b-9110-0613b9ea68e2",
+      "name": "Merge"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "1369a102-6d42-4665-bd49-a7db91d143c9",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "d0149e4665bba22e81fe00aa1c43717007a7c628f51d035e785ce3a901ac9ab7"
+  },
+  "id": "PjqAMQb6r6dbH5QP",
+  "tags": []
+}
