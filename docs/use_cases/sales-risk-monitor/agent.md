@@ -1,67 +1,38 @@
 # Sales Risk Monitor Agent
 
-## Overview
+## Agent Role
 
-The Sales Risk Monitor Agent continuously monitors sales pipeline activity and identifies deals at risk of being delayed or lost.
+The agent monitors the sales pipeline and identifies deals that are likely to fail.
 
-The system analyzes CRM data, communication signals, and pipeline activity to alert sales teams early.
+## Inputs
 
-## Business Problem
+CRM pipeline data  
+deal stage  
+meeting notes  
+email sentiment  
+activity history
 
-Sales teams often lose deals because risks are detected too late.
+## Risk Signals
 
-Typical indicators include:
+missing customer engagement  
+long deal stagnation  
+negative meeting sentiment  
+delayed follow-ups
 
-- Missing follow-ups
-- Long inactivity periods
-- Negative sentiment in emails
-- Pipeline stage stagnation
+## Agent Reasoning
 
-Manual monitoring is time-consuming and unreliable.
+The agent evaluates signals and estimates deal risk using LLM reasoning and scoring rules.
 
-## Solution
+## Output
 
-An AI agent monitors sales pipeline data and detects early risk signals.
+Risk score (0-100)
 
-The agent automatically flags deals and sends alerts to the responsible account manager.
+Risk explanation
 
-## Architecture
+Recommended action
 
-Components:
+Example:
 
-- CRM System (HubSpot / Salesforce)
-- n8n automation workflows
-- LLM for analysis
-- Notification system (Slack / Email)
-
-## Workflow
-
-1. Retrieve pipeline data from CRM
-2. Detect inactivity signals
-3. Analyze communication sentiment
-4. Calculate risk score
-5. Trigger alerts for high-risk deals
-
-## Example Output
-
-Risk Alert
-
-Deal: ACME Enterprise Contract  
-Risk Score: 78%
-
-Indicators:
-
-- No customer interaction in 12 days
-- Deal stuck in negotiation stage
-- Email sentiment negative
-
-Recommended action:
-
-Schedule follow-up call within 48 hours.
-
-## Business Impact
-
-- Earlier detection of pipeline risks
-- Higher win rates
-- Improved sales forecasting
-- Reduced manual monitoring
+- schedule executive call
+- request technical validation
+- escalate to sales manager
