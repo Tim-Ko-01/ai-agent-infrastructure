@@ -1,1 +1,11 @@
-
+deal_id,company,industry,deal_value,stage,owner,created_date,last_activity_date,next_step,close_probability
+D001,Acme Corp,Manufacturing,120000,Discovery,John Miller,2025-01-10,2025-01-14,Product demo scheduled,0.45
+D002,HealthPlus,Healthcare,85000,Proposal,Anna Schmidt,2025-01-05,2025-01-20,Waiting for budget approval,0.60
+D003,FinTrust Bank,Finance,220000,Negotiation,Michael Weber,2025-01-02,2025-01-18,Legal contract review,0.75
+D004,GreenEnergy Ltd,Energy,95000,Discovery,Sarah Klein,2025-01-12,2025-01-13,Follow-up meeting required,0.35
+D005,RetailHub,Retail,65000,Qualification,David Lang,2025-01-15,2025-01-15,Initial product discussion,0.30
+D006,LogiTrans,Logistics,150000,Proposal,Anna Schmidt,2025-01-03,2025-01-22,Technical validation meeting,0.55
+D007,Medico Group,Healthcare,175000,Negotiation,John Miller,2025-01-08,2025-01-19,Price negotiation ongoing,0.70
+D008,TechNova,Technology,110000,Discovery,Sarah Klein,2025-01-11,2025-01-12,Send product documentation,0.40
+D009,BuildRight,Construction,95000,Proposal,David Lang,2025-01-07,2025-01-17,Follow-up call scheduled,0.50
+D010,DataCloud,Technology,210000,Negotiation,Michael Weber,2025-01-04,2025-01-21,Final contract discussion,0.80
