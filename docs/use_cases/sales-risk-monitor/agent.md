@@ -2,37 +2,67 @@
 
 ## Agent Role
 
-The agent monitors the sales pipeline and identifies deals that are likely to fail.
+The Sales Risk Monitor Agent continuously analyzes the sales pipeline and detects deals that are at risk of failing.
+
+The agent evaluates signals from CRM data, sales activities, and communication patterns to identify potential problems early and notify responsible sales managers.
+
+---
 
 ## Inputs
 
-CRM pipeline data  
-deal stage  
-meeting notes  
-email sentiment  
-activity history
+The agent uses the following input data sources:
+
+* CRM pipeline data
+* Deal stage and deal progression history
+* Meeting notes and summaries
+* Email sentiment and communication signals
+* Sales activity history (calls, meetings, follow-ups)
+
+---
 
 ## Risk Signals
 
-missing customer engagement  
-long deal stagnation  
-negative meeting sentiment  
-delayed follow-ups
+The agent evaluates a set of signals that indicate potential deal risk.
+
+Typical risk indicators include:
+
+* Missing or decreasing customer engagement
+* Deals stagnating in the same stage for extended periods
+* Negative sentiment detected in meeting notes or emails
+* Delayed or missing follow-up actions
+* Lack of recent sales activities
+
+---
 
 ## Agent Reasoning
 
-The agent evaluates signals and estimates deal risk using LLM reasoning and scoring rules.
+The agent analyzes the collected signals and evaluates deal health using a combination of:
+
+* predefined scoring rules
+* LLM-based reasoning
+* pattern detection across deal activity
+
+Each deal receives a risk evaluation based on these signals.
+
+---
 
 ## Output
 
-Risk score (0-100)
+For each analyzed deal, the agent produces:
 
-Risk explanation
+**Risk Score**
 
-Recommended action
+A numerical score between **0–100** indicating the probability that a deal may fail.
 
-Example:
+**Risk Explanation**
 
-- schedule executive call
-- request technical validation
-- escalate to sales manager
+A human-readable explanation of the identified risk signals.
+
+**Recommended Action**
+
+Suggested actions for the sales team, for example:
+
+* Schedule executive alignment call
+* Request technical validation from the customer
+* Increase engagement with key stakeholders
+* Escalate the deal to the sales manager
