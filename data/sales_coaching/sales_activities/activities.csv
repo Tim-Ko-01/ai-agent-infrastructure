@@ -1,1 +1,7 @@
-
+activity_id,deal_id,type,date,owner,notes
+A001,D001,call,2025-01-14,John Miller,Initial discovery call
+A002,D001,email,2025-01-16,John Miller,Sent product overview
+A003,D001,meeting,2025-01-20,John Miller,Discussed pilot implementation
+A004,D002,call,2025-01-10,John Miller,Qualification call
+A005,D002,email,2025-01-12,John Miller,Sent pricing information
+A006,D003,meeting,2025-01-08,John Miller,Technical discussion
