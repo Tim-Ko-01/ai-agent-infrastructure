@@ -1,13 +1,6 @@
-# AI Agent Use Cases
+## Sales Risk Monitor Agent
 
-This section documents implemented AI agents and automation workflows.
-
-## Available Use Cases
-
-### Sales Risk Monitor Agent
-
-AI agent that monitors sales pipelines and identifies high-risk deals based on activity signals.
+Detects deals in the sales pipeline that are at risk of failing and alerts sales managers.
 
 Documentation:
-
-docs/use_cases/sales-risk-monitor-agent.md
+docs/use_cases/sales-risk-monitor/overview.md
