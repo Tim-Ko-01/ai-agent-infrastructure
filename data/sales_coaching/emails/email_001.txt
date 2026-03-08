@@ -1,1 +1,20 @@
+Subject: Follow up from our planning discussion
 
+From: John Miller
+To: Lisa Grant
+Company: Acme Corp
+Deal ID: D001
+Date: 2025-01-15
+
+Hi Lisa,
+
+Thanks again for the discussion yesterday.
+
+Based on your challenges around manufacturing planning and data synchronization, I believe our platform could significantly improve visibility across your plants.
+
+As discussed, we usually start with a pilot implementation in one plant before rolling out to the full organization.
+
+Let me know if you'd like to explore the next steps.
+
+Best,
+John
