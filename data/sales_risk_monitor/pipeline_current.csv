@@ -1,0 +1,13 @@
+﻿deal_id;account_name;deal_value;currency;stage;probability;expected_close_date;last_updated_date;forecast_category;next_step_date;service_signal;risk_level;high_risk_flag
+D-2001;Universitätsklinikum Würzburg;280000;EUR;Negotiation;78;2026-03-30;2026-02-22;Commit;2026-02-27;positive;Low Risk;NO
+D-2002;Helios Klinikgruppe Süd;150000;EUR;Proposal;62;2026-04-25;2026-02-18;Best Case;2026-03-12;neutral;Medium Risk;YES
+D-2003;MediCloud Software GmbH;92000;EUR;Discovery;40;2026-06-15;2026-02-11;Pipeline;2026-03-20;neutral;Medium Risk;NO
+D-2004;Sana IT Services;210000;EUR;Negotiation;70;2026-03-20;2026-02-21;Commit;2026-02-28;positive;Low Risk;NO
+D-2005;HealthTech Analytics AG;125000;EUR;Proposal;55;2026-05-05;2026-02-10;Best Case;2026-03-18;risk;High Risk;YES
+D-2006;Klinikum Frankfurt Digital;310000;EUR;Negotiation;82;2026-03-18;2026-02-23;Commit;2026-02-26;positive;Low Risk;NO
+D-2007;CareSoft Plattform GmbH;68000;EUR;Qualification;30;2026-07-10;2026-02-16;Pipeline;2026-03-25;neutral;Medium Risk;NO
+D-2008;MVZ Rhein-Main Verbund;98000;EUR;Proposal;58;2026-05-28;2026-02-14;Best Case;2026-03-15;risk;High Risk;YES
+D-2009;MedData Integration GmbH;175000;EUR;Negotiation;73;2026-03-27;2026-02-20;Commit;2026-03-02;positive;Low Risk;NO
+D-2010;Krankenhausverbund Bayern Nord;240000;EUR;Discovery;45;2026-06-30;2026-02-12;Pipeline;2026-03-22;neutral;Medium Risk;NO
+D-2011;Digital Health Solutions Europe;135000;EUR;Proposal;60;2026-04-30;2026-02-17;Best Case;2026-03-10;neutral;Medium Risk;YES
+D-2012;Telemedizin Netzwerk Deutschland;88000;EUR;Qualification;35;2026-07-20;2026-02-19;Pipeline;2026-03-28;neutral;Medium Risk;NO
