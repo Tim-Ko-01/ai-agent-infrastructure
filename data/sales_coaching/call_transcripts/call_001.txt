@@ -1,1 +1,34 @@
+Sales Call Transcript
 
+Company: Acme Corp
+Deal ID: D001
+Sales Rep: John Miller
+Customer: Lisa Grant
+Date: 2025-01-14
+
+Sales Rep:
+Thanks for taking the time today. I’d like to understand your current manufacturing planning process.
+
+Customer:
+Sure. Right now we use several disconnected systems which makes forecasting difficult.
+
+Sales Rep:
+How does that impact your production planning?
+
+Customer:
+We often have delays because the data isn't synchronized.
+
+Sales Rep:
+That’s exactly the problem our platform solves. Can you tell me how many plants you operate?
+
+Customer:
+Currently five across Europe.
+
+Sales Rep:
+Understood. In similar environments we helped reduce planning delays by around 25%.
+
+Customer:
+That sounds interesting. What would implementation look like?
+
+Sales Rep:
+Typically we start with one pilot plant before scaling across the organization.
