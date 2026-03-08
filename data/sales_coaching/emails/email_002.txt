@@ -1,1 +1,18 @@
+Subject: Re: Pilot implementation
 
+From: Lisa Grant
+To: John Miller
+Company: Acme Corp
+Deal ID: D001
+Date: 2025-01-18
+
+Hi John,
+
+Thanks for the overview.
+
+The pilot approach sounds reasonable. I would like to involve our operations manager in the next discussion to understand the implementation effort.
+
+Could we schedule another call next week?
+
+Best,
+Lisa
